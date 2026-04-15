@@ -1,177 +1,267 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ece & Göktuğ</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ece & Göktuğ</title>
 
-<style>
-* { box-sizing: border-box; }
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-body {
-  margin: 0;
-  font-family: Arial;
-  background: linear-gradient(180deg, #0a0a0a, #111);
-  color: white;
-}
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(180deg, #0a0a0a, #111111);
+      color: white;
+    }
 
-.container {
-  display: flex;
-  min-height: 100vh;
-}
+    .container {
+      display: flex;
+      min-height: 100vh;
+    }
 
-/* SOL MENÜ */
-.sidebar {
-  width: 260px;
-  background: #0f0f0f;
-  padding: 20px;
-  border-right: 1px solid #222;
-}
+    .sidebar {
+      width: 260px;
+      background: #0f0f0f;
+      border-right: 1px solid #222;
+      padding: 20px;
+    }
 
-.logo {
-  text-align: center;
-  margin-bottom: 30px;
-  font-size: 22px;
-  color: #ff4d6d;
-}
+    .logo {
+      text-align: center;
+      font-size: 24px;
+      color: #ff4d6d;
+      margin-bottom: 30px;
+      font-weight: bold;
+    }
 
-.game-btn {
-  width: 100%;
-  padding: 14px;
-  margin-bottom: 12px;
-  border: none;
-  border-radius: 12px;
-  background: #1c1c1c;
-  color: white;
-  cursor: pointer;
-  font-size: 16px;
-  transition: 0.3s;
-}
+    .game-btn {
+      width: 100%;
+      padding: 14px;
+      margin-bottom: 12px;
+      border: none;
+      border-radius: 12px;
+      background: #1c1c1c;
+      color: white;
+      cursor: pointer;
+      font-size: 16px;
+      transition: 0.25s;
+    }
 
-.game-btn:hover {
-  background: #ff4d6d;
-  transform: scale(1.03);
-}
+    .game-btn:hover {
+      background: #ff4d6d;
+      transform: scale(1.02);
+    }
 
-/* ANA İÇERİK */
-.content {
-  flex: 1;
-  padding: 40px;
-}
+    .content {
+      flex: 1;
+      padding: 40px;
+    }
 
-/* BAŞLIK */
-.header {
-  text-align: center;
-  margin-bottom: 40px;
-}
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
 
-.header h1 {
-  font-size: 42px;
-  margin-bottom: 10px;
-}
+    .header h1 {
+      font-size: 42px;
+      margin-bottom: 12px;
+    }
 
-.header p {
-  max-width: 700px;
-  margin: auto;
-  color: #ccc;
-  line-height: 1.6;
-}
+    .header p {
+      max-width: 750px;
+      margin: 0 auto;
+      color: #d4d4d4;
+      line-height: 1.7;
+      font-size: 17px;
+    }
 
-/* ÖZEL NOT */
-.note {
-  margin-top: 30px;
-  padding: 20px;
-  background: #141414;
-  border-radius: 15px;
-  border: 1px solid #222;
-  text-align: center;
-  color: #ddd;
-}
+    .note {
+      margin: 30px auto 40px;
+      max-width: 800px;
+      background: #141414;
+      border: 1px solid #222;
+      border-radius: 18px;
+      padding: 22px;
+      text-align: center;
+      color: #dddddd;
+      line-height: 1.7;
+    }
 
-/* VİDEO ALANI */
-.video-section {
-  display: none;
-}
+    .video-section {
+      display: none;
+    }
 
-.video-section.active {
-  display: block;
-}
+    .video-section.active {
+      display: block;
+    }
 
-.video-section h3 {
-  color: #ff4d6d;
-}
+    .video-section h3 {
+      color: #ff4d6d;
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
 
-/* MOBİL */
-@media(max-width: 900px) {
-  .container { flex-direction: column; }
-  .sidebar { width: 100%; }
-}
-</style>
+    .video-card {
+      background: #141414;
+      border: 1px solid #222;
+      border-radius: 18px;
+      padding: 18px;
+      margin-top: 20px;
+      max-width: 900px;
+    }
 
-<script>
-function showGame(id) {
-  let sections = document.querySelectorAll('.video-section');
-  sections.forEach(s => s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-}
-</script>
+    .video-card h4 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 22px;
+    }
 
+    .video-card p {
+      color: #d8d8d8;
+      line-height: 1.6;
+    }
+
+    .open-btn {
+      padding: 12px 18px;
+      border: none;
+      border-radius: 10px;
+      background: #ff4d6d;
+      color: white;
+      cursor: pointer;
+      font-size: 15px;
+      margin-top: 8px;
+    }
+
+    .open-btn:hover {
+      opacity: 0.9;
+    }
+
+    iframe {
+      width: 100%;
+      height: 315px;
+      border: none;
+      border-radius: 14px;
+      margin-top: 15px;
+    }
+
+    .watched-text {
+      margin-top: 12px;
+      color: #ffb3c1;
+      font-size: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #222;
+      }
+
+      .content {
+        padding: 25px;
+      }
+
+      .header h1 {
+        font-size: 32px;
+      }
+    }
+  </style>
+
+  <script>
+    function showGame(id) {
+      let sections = document.querySelectorAll('.video-section');
+      sections.forEach(section => section.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+
+    function openVideo(id) {
+      document.getElementById(id).style.display = 'block';
+    }
+  </script>
 </head>
 <body>
+  <div class="container">
+    <div class="sidebar">
+      <div class="logo">🎮 Anılarımız</div>
 
-<div class="container">
+      <button class="game-btn" onclick="showGame('valorant')">🎯 Valorant</button>
+      <button class="game-btn" onclick="showGame('minecraft')">🧱 Minecraft</button>
+      <button class="game-btn" onclick="showGame('roblox')">🎲 Roblox</button>
+      <button class="game-btn" onclick="showGame('gta')">🚗 GTA</button>
+    </div>
 
-  <!-- SOL MENÜ -->
-  <div class="sidebar">
-    <div class="logo">🎮 Anılarımız</div>
+    <div class="content">
+      <div class="header">
+        <h1>Ece & Göktuğ 💜</h1>
+        <p>
+          Belki son zamanlarda her şey biraz karıştı ama birlikte geçirdiğimiz
+          anlar benim için hâlâ çok değerli. Burada, beraber güldüğümüz ve iyi
+          hissettiren anılardan bazılarını bir araya getirmek istedim.
+        </p>
+      </div>
 
-    <button class="game-btn" onclick="showGame('valorant')">🎯 Valorant</button>
-    <button class="game-btn" onclick="showGame('minecraft')">🧱 Minecraft</button>
-    <button class="game-btn" onclick="showGame('roblox')">🎲 Roblox</button>
-    <button class="game-btn" onclick="showGame('gta')">🚗 GTA</button>
+      <div class="note">
+        Burası sadece bizim için hazırlandı.  
+        Belki bazı şeyler değişti ama birlikte geçirdiğimiz güzel vakitlerin
+        değeri benim için hiç değişmedi.
+      </div>
+
+      <div id="valorant" class="video-section active">
+        <h3>🎯 Valorant</h3>
+
+        <div class="video-card">
+          <h4>Örnek Video</h4>
+          <p>
+            Şimdilik test için bir örnek video koydum. Kendi videolarını daha
+            sonra bunun yerine ekleyebiliriz.
+          </p>
+
+          <button class="open-btn" onclick="openVideo('video1')">Videoyu Aç</button>
+
+          <div id="video1" style="display: none;">
+            <iframe
+              src="https://www.youtube.com/embed/JapA4hYxlGQ"
+              allowfullscreen>
+            </iframe>
+            <div class="watched-text">Video açıldı.</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="minecraft" class="video-section">
+        <h3>🧱 Minecraft</h3>
+
+        <div class="video-card">
+          <h4>Minecraft Anıları</h4>
+          <p>Bu bölüme videoları daha sonra ekleyeceğiz.</p>
+        </div>
+      </div>
+
+      <div id="roblox" class="video-section">
+        <h3>🎲 Roblox</h3>
+
+        <div class="video-card">
+          <h4>Roblox Anıları</h4>
+          <p>Bu bölüme videoları daha sonra ekleyeceğiz.</p>
+        </div>
+      </div>
+
+      <div id="gta" class="video-section">
+        <h3>🚗 GTA</h3>
+
+        <div class="video-card">
+          <h4>GTA Anıları</h4>
+          <p>Bu bölüme videoları daha sonra ekleyeceğiz.</p>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <!-- ANA ALAN -->
-  <div class="content">
-
-    <div class="header">
-      <h1>Ece & Göktuğ 💜</h1>
-      <p>
-        Belki son zamanlarda her şey biraz karıştı ama  
-        birlikte geçirdiğimiz anlar benim için hâlâ çok değerli.
-      </p>
-    </div>
-
-    <!-- ÖZEL NOT -->
-    <div class="note">
-      Burası sadece bizim için.  
-      Belki her şey eskisi gibi olmaz ama  
-      o anılar hâlâ benim için çok önemli.
-    </div>
-
-    <!-- VİDEOLAR (SONRA EKLENECEK) -->
-    <div id="valorant" class="video-section active">
-      <h3>🎯 Valorant</h3>
-      <p>Videolar sonra eklenecek...</p>
-    </div>
-
-    <div id="minecraft" class="video-section">
-      <h3>🧱 Minecraft</h3>
-      <p>Videolar sonra eklenecek...</p>
-    </div>
-
-    <div id="roblox" class="video-section">
-      <h3>🎲 Roblox</h3>
-      <p>Videolar sonra eklenecek...</p>
-    </div>
-
-    <div id="gta" class="video-section">
-      <h3>🚗 GTA</h3>
-      <p>Videolar sonra eklenecek...</p>
-    </div>
-
-  </div>
-</div>
-
 </body>
 </html>
