@@ -31,6 +31,116 @@
         radial-gradient(circle at top right, rgba(255, 92, 138, 0.18), transparent 35%),
         linear-gradient(180deg, #09090f 0%, #0d0d15 100%);
       min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .fade-in {
+      animation: fadeIn 0.9s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* GİRİŞ EKRANI */
+    .login-screen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background:
+        radial-gradient(circle at top, rgba(255, 92, 138, 0.10), transparent 30%),
+        radial-gradient(circle at bottom, rgba(159, 122, 234, 0.10), transparent 35%),
+        linear-gradient(180deg, #050508 0%, #0b0b12 100%);
+    }
+
+    .login-card {
+      width: 100%;
+      max-width: 440px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      border-radius: 26px;
+      padding: 32px 28px;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(16px);
+    }
+
+    .login-badge {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #ffd7e3;
+      font-size: 13px;
+      margin-bottom: 14px;
+    }
+
+    .login-card h1 {
+      margin: 0 0 10px;
+      font-size: 34px;
+    }
+
+    .login-card p {
+      margin: 0 0 22px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .password-box {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.05);
+      color: white;
+      font-size: 15px;
+      outline: none;
+      margin-bottom: 14px;
+    }
+
+    .password-box::placeholder {
+      color: #b8b8c3;
+    }
+
+    .enter-btn {
+      width: 100%;
+      border: none;
+      border-radius: 14px;
+      padding: 14px 18px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: white;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: bold;
+      box-shadow: 0 10px 25px rgba(159, 122, 234, 0.25);
+      transition: 0.2s ease;
+    }
+
+    .enter-btn:hover {
+      transform: translateY(-1px);
+      opacity: 0.96;
+    }
+
+    .error-text {
+      color: #ffb3c1;
+      font-size: 14px;
+      margin-top: 12px;
+      min-height: 18px;
+    }
+
+    /* ANA SİTE */
+    .site-wrapper {
+      display: none;
     }
 
     .layout {
@@ -254,13 +364,17 @@
         padding: 18px;
       }
 
-      .hero, .section-card {
+      .hero, .section-card, .login-card {
         padding: 20px;
         border-radius: 22px;
       }
 
       .hero h1 {
         font-size: 32px;
+      }
+
+      .login-card h1 {
+        font-size: 28px;
       }
 
       iframe {
@@ -270,6 +384,29 @@
   </style>
 
   <script>
+    const DOGRU_SIFRE = "ecegok";
+
+    function girisYap() {
+      const input = document.getElementById("passwordInput").value;
+      const errorText = document.getElementById("errorText");
+      const loginScreen = document.getElementById("loginScreen");
+      const siteWrapper = document.getElementById("siteWrapper");
+
+      if (input === DOGRU_SIFRE) {
+        loginScreen.style.display = "none";
+        siteWrapper.style.display = "block";
+        siteWrapper.classList.add("fade-in");
+      } else {
+        errorText.textContent = "Şifre yanlış.";
+      }
+    }
+
+    function enterKontrol(event) {
+      if (event.key === "Enter") {
+        girisYap();
+      }
+    }
+
     function showGame(id, btn) {
       let sections = document.querySelectorAll('.video-section');
       sections.forEach(section => section.classList.remove('active'));
@@ -292,86 +429,110 @@
   </script>
 </head>
 <body>
-  <div class="layout">
-    <aside class="sidebar">
-      <div class="brand">
-        <h2>🎮 Anılarımız</h2>
-        <p>Sadece bazı anları tekrar görmek için hazırlanmış küçük bir yer.</p>
-      </div>
+  <div id="loginScreen" class="login-screen">
+    <div class="login-card fade-in">
+      <div class="login-badge">Özel Alan</div>
+      <h1>Şifre Gir</h1>
+      <p>
+        Bu sayfa sadece ikimiz için hazırlandı.
+      </p>
 
-      <div class="menu-title">OYUNLAR</div>
+      <input
+        id="passwordInput"
+        class="password-box"
+        type="password"
+        placeholder="Şifre"
+        onkeypress="enterKontrol(event)"
+      />
 
-      <button class="game-btn" onclick="showGame('valorant', this)">🎯 Valorant</button>
-      <button class="game-btn" onclick="showGame('backrooms', this)">👻 Escape The Backrooms</button>
-    </aside>
+      <button class="enter-btn" onclick="girisYap()">Giriş Yap</button>
 
-    <main class="main">
-      <section class="hero">
-        <div class="badge">Ece & Göktuğ</div>
-        <h1>Birlikte güldüğümüz anlar</h1>
-        <p>
-          Belki son zamanlarda her şey biraz karıştı ama birlikte geçirdiğimiz
-          zamanlar benim için hâlâ çok değerli. O yüzden, iyi hissettiren birkaç
-          anıyı burada bir araya getirmek istedim.
-        </p>
+      <div id="errorText" class="error-text"></div>
+    </div>
+  </div>
 
-        <div class="hero-note">
-          Burası sadece ikimiz için hazırlandı. Büyük bir şey değil belki ama,
-          birlikte geçirdiğimiz güzel vakitlerin benim için ne kadar değerli olduğunu
-          göstermenin küçük bir yolu gibi.
+  <div id="siteWrapper" class="site-wrapper">
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="brand">
+          <h2>🎮 Anılarımız</h2>
+          <p>Sadece bazı anları tekrar görmek için hazırlanmış küçük bir yer.</p>
         </div>
-      </section>
 
-      <section class="section-card">
-        <div id="valorant" class="video-section active">
-          <div class="section-head">
-            <h3>🎯 Valorant</h3>
-            <span>Seçilen oyun bölümü</span>
+        <div class="menu-title">OYUNLAR</div>
+
+        <button class="game-btn" onclick="showGame('valorant', this)">🎯 Valorant</button>
+        <button class="game-btn" onclick="showGame('backrooms', this)">👻 Escape The Backrooms</button>
+      </aside>
+
+      <main class="main">
+        <section class="hero">
+          <div class="badge">Ece & Göktuğ</div>
+          <h1>Birlikte güldüğümüz anlar</h1>
+          <p>
+            Belki son zamanlarda her şey biraz karıştı ama birlikte geçirdiğimiz
+            zamanlar benim için hâlâ çok değerli. O yüzden, iyi hissettiren birkaç
+            anıyı burada bir araya getirmek istedim.
+          </p>
+
+          <div class="hero-note">
+            Burası sadece ikimiz için hazırlandı. Büyük bir şey değil belki ama,
+            birlikte geçirdiğimiz güzel vakitlerin benim için ne kadar değerli olduğunu
+            göstermenin küçük bir yolu gibi.
           </div>
+        </section>
 
-          <div class="video-card">
-            <h4>Birlikte Güldüğümüz An</h4>
-            <p>
-              Birlikte oynarken güzel vakit geçirdiğimiz anlardan biri.
-            </p>
+        <section class="section-card">
+          <div id="valorant" class="video-section active">
+            <div class="section-head">
+              <h3>🎯 Valorant</h3>
+              <span>Seçilen oyun bölümü</span>
+            </div>
 
-            <button class="open-btn" onclick="openVideo('video1')">Videoyu Aç</button>
+            <div class="video-card">
+              <h4>Birlikte Güldüğümüz An</h4>
+              <p>
+                Birlikte oynarken güzel vakit geçirdiğimiz anlardan biri.
+              </p>
 
-            <div id="video1" class="video-wrap">
-              <iframe
-                src="https://www.youtube.com/embed/62eTA3WEK90"
-                allowfullscreen>
-              </iframe>
-              <div class="watched-text">Video açıldı.</div>
+              <button class="open-btn" onclick="openVideo('video1')">Videoyu Aç</button>
+
+              <div id="video1" class="video-wrap">
+                <iframe
+                  src="https://www.youtube.com/embed/62eTA3WEK90"
+                  allowfullscreen>
+                </iframe>
+                <div class="watched-text">Video açıldı.</div>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div id="backrooms" class="video-section">
-          <div class="section-head">
-            <h3>👻 Escape The Backrooms</h3>
-            <span>Seçilen oyun bölümü</span>
-          </div>
+          <div id="backrooms" class="video-section">
+            <div class="section-head">
+              <h3>👻 Escape The Backrooms</h3>
+              <span>Seçilen oyun bölümü</span>
+            </div>
 
-          <div class="video-card">
-            <h4>Korku ama birlikte</h4>
-            <p>
-              Birlikte oynarken hem gerildiğimiz hem de güldüğümüz anlardan biri.
-            </p>
+            <div class="video-card">
+              <h4>Korku ama birlikte</h4>
+              <p>
+                Birlikte oynarken hem gerildiğimiz hem de güldüğümüz anlardan biri.
+              </p>
 
-            <button class="open-btn" onclick="openVideo('video2')">Videoyu Aç</button>
+              <button class="open-btn" onclick="openVideo('video2')">Videoyu Aç</button>
 
-            <div id="video2" class="video-wrap">
-              <iframe
-                src="https://www.youtube.com/embed/Txl1ItCNLFo"
-                allowfullscreen>
-              </iframe>
-              <div class="watched-text">Video açıldı.</div>
+              <div id="video2" class="video-wrap">
+                <iframe
+                  src="https://www.youtube.com/embed/Txl1ItCNLFo"
+                  allowfullscreen>
+                </iframe>
+                <div class="watched-text">Video açıldı.</div>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-    </main>
+        </section>
+      </main>
+    </div>
   </div>
 </body>
 </html>
