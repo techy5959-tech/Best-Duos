@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ece & Göktuğ</title>
+
+  <style>
+    body {
+      background: #0d0d0d;
+      color: white;
+      text-align: center;
+      font-family: Arial;
+      margin-top: 80px;
+    }
+
+    input, button {
+      padding: 10px;
+      border-radius: 10px;
+      border: none;
+      margin: 10px;
+    }
+
+    button {
+      background: #ff4d6d;
+      color: white;
+      cursor: pointer;
+    }
+
+    iframe {
+      margin-top: 20px;
+      border-radius: 15px;
+    }
+  </style>
+
+  <script>
+    function giris() {
+      var sifre = document.getElementById("sifre").value;
+      if (sifre === "ecegok") {
+        document.getElementById("giris").style.display = "none";
+        document.getElementById("site").style.display = "block";
+      } else {
+        alert("Yanlış şifre");
+      }
+    }
+  </script>
+</head>
+
+<body>
+
+<div id="giris">
+  <h2>Şifre Gir</h2>
+  <input type="password" id="sifre">
+  <br>
+  <button onclick="giris()">Giriş</button>
+</div>
+
+<div id="site" style="display:none;">
+  <h1>Ece & Göktuğ 🎮</h1>
+  
+  <p>
+  Belki her şey eskisi gibi değil ama  
+  birlikte geçirdiğimiz anlar benim için hâlâ çok değerli.
+  </p>
+
+  <!-- BURAYA YOUTUBE VİDEO GELECEK -->
+
+</div>
+
+</body>
+</html>
