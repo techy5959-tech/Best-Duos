@@ -1,68 +1,176 @@
 <!DOCTYPE html>
-<html>
+<html lang="tr">
 <head>
-  <title>Ece & Göktuğ</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ece & Göktuğ</title>
 
-  <style>
-    body {
-      background: #0d0d0d;
-      color: white;
-      text-align: center;
-      font-family: Arial;
-      margin-top: 80px;
-    }
+<style>
+* { box-sizing: border-box; }
 
-    input, button {
-      padding: 10px;
-      border-radius: 10px;
-      border: none;
-      margin: 10px;
-    }
+body {
+  margin: 0;
+  font-family: Arial;
+  background: linear-gradient(180deg, #0a0a0a, #111);
+  color: white;
+}
 
-    button {
-      background: #ff4d6d;
-      color: white;
-      cursor: pointer;
-    }
+.container {
+  display: flex;
+  min-height: 100vh;
+}
 
-    iframe {
-      margin-top: 20px;
-      border-radius: 15px;
-    }
-  </style>
+/* SOL MENÜ */
+.sidebar {
+  width: 260px;
+  background: #0f0f0f;
+  padding: 20px;
+  border-right: 1px solid #222;
+}
 
-  <script>
-    function giris() {
-      var sifre = document.getElementById("sifre").value;
-      if (sifre === "ecegok") {
-        document.getElementById("giris").style.display = "none";
-        document.getElementById("site").style.display = "block";
-      } else {
-        alert("Yanlış şifre");
-      }
-    }
-  </script>
+.logo {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 22px;
+  color: #ff4d6d;
+}
+
+.game-btn {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 12px;
+  border: none;
+  border-radius: 12px;
+  background: #1c1c1c;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.game-btn:hover {
+  background: #ff4d6d;
+  transform: scale(1.03);
+}
+
+/* ANA İÇERİK */
+.content {
+  flex: 1;
+  padding: 40px;
+}
+
+/* BAŞLIK */
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.header h1 {
+  font-size: 42px;
+  margin-bottom: 10px;
+}
+
+.header p {
+  max-width: 700px;
+  margin: auto;
+  color: #ccc;
+  line-height: 1.6;
+}
+
+/* ÖZEL NOT */
+.note {
+  margin-top: 30px;
+  padding: 20px;
+  background: #141414;
+  border-radius: 15px;
+  border: 1px solid #222;
+  text-align: center;
+  color: #ddd;
+}
+
+/* VİDEO ALANI */
+.video-section {
+  display: none;
+}
+
+.video-section.active {
+  display: block;
+}
+
+.video-section h3 {
+  color: #ff4d6d;
+}
+
+/* MOBİL */
+@media(max-width: 900px) {
+  .container { flex-direction: column; }
+  .sidebar { width: 100%; }
+}
+</style>
+
+<script>
+function showGame(id) {
+  let sections = document.querySelectorAll('.video-section');
+  sections.forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+</script>
+
 </head>
-
 <body>
 
-<div id="giris">
-  <h2>Şifre Gir</h2>
-  <input type="password" id="sifre">
-  <br>
-  <button onclick="giris()">Giriş</button>
-</div>
+<div class="container">
 
-<div id="site" style="display:none;">
-  <h1>Ece & Göktuğ 🎮</h1>
-  
-  <p>
-  Belki her şey eskisi gibi değil ama  
-  birlikte geçirdiğimiz anlar benim için hâlâ çok değerli.
-  </p>
+  <!-- SOL MENÜ -->
+  <div class="sidebar">
+    <div class="logo">🎮 Anılarımız</div>
 
-  <!-- BURAYA YOUTUBE VİDEO GELECEK -->
+    <button class="game-btn" onclick="showGame('valorant')">🎯 Valorant</button>
+    <button class="game-btn" onclick="showGame('minecraft')">🧱 Minecraft</button>
+    <button class="game-btn" onclick="showGame('roblox')">🎲 Roblox</button>
+    <button class="game-btn" onclick="showGame('gta')">🚗 GTA</button>
+  </div>
 
+  <!-- ANA ALAN -->
+  <div class="content">
+
+    <div class="header">
+      <h1>Ece & Göktuğ 💜</h1>
+      <p>
+        Belki son zamanlarda her şey biraz karıştı ama  
+        birlikte geçirdiğimiz anlar benim için hâlâ çok değerli.
+      </p>
+    </div>
+
+    <!-- ÖZEL NOT -->
+    <div class="note">
+      Burası sadece bizim için.  
+      Belki her şey eskisi gibi olmaz ama  
+      o anılar hâlâ benim için çok önemli.
+    </div>
+
+    <!-- VİDEOLAR (SONRA EKLENECEK) -->
+    <div id="valorant" class="video-section active">
+      <h3>🎯 Valorant</h3>
+      <p>Videolar sonra eklenecek...</p>
+    </div>
+
+    <div id="minecraft" class="video-section">
+      <h3>🧱 Minecraft</h3>
+      <p>Videolar sonra eklenecek...</p>
+    </div>
+
+    <div id="roblox" class="video-section">
+      <h3>🎲 Roblox</h3>
+      <p>Videolar sonra eklenecek...</p>
+    </div>
+
+    <div id="gta" class="video-section">
+      <h3>🚗 GTA</h3>
+      <p>Videolar sonra eklenecek...</p>
+    </div>
+
+  </div>
 </div>
 
 </body>
