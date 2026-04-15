@@ -113,14 +113,6 @@
       margin-bottom: 26px;
     }
 
-    .hero-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
     .badge {
       display: inline-block;
       padding: 8px 14px;
@@ -197,6 +189,7 @@
       border: 1px solid var(--border);
       border-radius: 22px;
       padding: 20px;
+      margin-bottom: 20px;
     }
 
     .video-card h4 {
@@ -245,15 +238,6 @@
       margin-top: 10px;
       color: #f5bfd0;
       font-size: 14px;
-    }
-
-    .empty-box {
-      padding: 22px;
-      border-radius: 20px;
-      border: 1px dashed rgba(255,255,255,0.15);
-      color: var(--muted);
-      background: rgba(255,255,255,0.02);
-      line-height: 1.7;
     }
 
     @media (max-width: 980px) {
@@ -318,22 +302,18 @@
       <div class="menu-title">OYUNLAR</div>
 
       <button class="game-btn" onclick="showGame('valorant', this)">🎯 Valorant</button>
-
+      <button class="game-btn" onclick="showGame('backrooms', this)">👻 Escape The Backrooms</button>
     </aside>
 
     <main class="main">
       <section class="hero">
-        <div class="hero-top">
-          <div>
-            <div class="badge">Ece & Göktuğ</div>
-            <h1>Birlikte güldüğümüz anlar</h1>
-            <p>
-              Belki son zamanlarda her şey biraz karıştı ama birlikte geçirdiğimiz
-              zamanlar benim için hâlâ çok değerli. O yüzden, iyi hissettiren birkaç
-              anıyı burada bir araya getirmek istedim.
-            </p>
-          </div>
-        </div>
+        <div class="badge">Ece & Göktuğ</div>
+        <h1>Birlikte güldüğümüz anlar</h1>
+        <p>
+          Belki son zamanlarda her şey biraz karıştı ama birlikte geçirdiğimiz
+          zamanlar benim için hâlâ çok değerli. O yüzden, iyi hissettiren birkaç
+          anıyı burada bir araya getirmek istedim.
+        </p>
 
         <div class="hero-note">
           Burası sadece ikimiz için hazırlandı. Büyük bir şey değil belki ama,
@@ -352,8 +332,7 @@
           <div class="video-card">
             <h4>Birlikte Güldüğümüz An</h4>
             <p>
-              Şimdilik bu videoyu ekledim. Sonra diğer anıları da oyunlara göre
-              düzenli şekilde yerleştirebiliriz.
+              Birlikte oynarken güzel vakit geçirdiğimiz anlardan biri.
             </p>
 
             <button class="open-btn" onclick="openVideo('video1')">Videoyu Aç</button>
@@ -368,36 +347,27 @@
           </div>
         </div>
 
-        <div id="minecraft" class="video-section">
+        <div id="backrooms" class="video-section">
           <div class="section-head">
-            <h3>🧱 Minecraft</h3>
-            <span>Henüz video eklenmedi</span>
+            <h3>👻 Escape The Backrooms</h3>
+            <span>Seçilen oyun bölümü</span>
           </div>
 
-          <div class="empty-box">
-            Bu bölüme daha sonra Minecraft videolarını ekleyebiliriz.
-          </div>
-        </div>
+          <div class="video-card">
+            <h4>Korku ama birlikte</h4>
+            <p>
+              Birlikte oynarken hem gerildiğimiz hem de güldüğümüz anlardan biri.
+            </p>
 
-        <div id="roblox" class="video-section">
-          <div class="section-head">
-            <h3>🎲 Roblox</h3>
-            <span>Henüz video eklenmedi</span>
-          </div>
+            <button class="open-btn" onclick="openVideo('video2')">Videoyu Aç</button>
 
-          <div class="empty-box">
-            Bu bölüme daha sonra Roblox videolarını ekleyebiliriz.
-          </div>
-        </div>
-
-        <div id="gta" class="video-section">
-          <div class="section-head">
-            <h3>🚗 GTA</h3>
-            <span>Henüz video eklenmedi</span>
-          </div>
-
-          <div class="empty-box">
-            Bu bölüme daha sonra GTA videolarını ekleyebiliriz.
+            <div id="video2" class="video-wrap">
+              <iframe
+                src="https://www.youtube.com/embed/Txl1ItCNLFo"
+                allowfullscreen>
+              </iframe>
+              <div class="watched-text">Video açıldı.</div>
+            </div>
           </div>
         </div>
       </section>
